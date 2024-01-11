@@ -2,7 +2,7 @@
   "name": "react-shop-backend",
   "version": "1.0.0",
   "description": "This is the API for react-shop project",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,9 @@
   "repository": "https://github.com/Siza36/react-shop-backend",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.4"
-  }
+  },
+  "type": "module"
 }

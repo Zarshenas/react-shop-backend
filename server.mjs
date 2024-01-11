@@ -18,6 +18,9 @@ mongoose
   .then(() => console.log(`Connected to DB`))
   .catch((err) => console.log(err));
 
+app.get('/' , (res , req) => {
+  res.send("Hi")
+})
 app.listen(process.env.PORT, () =>
   console.log(`listening on port : ${process.env.PORT}!`)
 );

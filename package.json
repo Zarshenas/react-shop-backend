@@ -2,7 +2,7 @@
   "name": "react-shop-backend",
   "version": "1.0.0",
   "description": "This is the API for react-shop project",
-  "main": "server.mjs",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

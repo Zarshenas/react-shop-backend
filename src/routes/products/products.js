@@ -1,5 +1,5 @@
-import express from 'express';
-import { Product } from '../../database/schemas/productSchema.mjs';
+const express = require( "express");
+const Product = require('../../database/schemas/productSchema.js')
 
 const productRouter = express.Router();
 
@@ -8,4 +8,4 @@ productRouter.get('/products',async(req , res) => {
     res.send(allProducts)
 })
 
-export default productRouter;
+module.exports = productRouter;

@@ -1,9 +1,9 @@
-import express from "express";
-import cors from "cors";
-import productRouter from "./src/routes/products/products.mjs";
-import categoriesRouter from "./src/routes/categories/categories.mjs";
-import mongoose from "mongoose";
-import "dotenv/config";
+const express = require( "express");
+const cors = require( "cors");
+const productRouter = require( "./src/routes/products/products.js");
+const categoriesRouter = require( "./src/routes/categories/categories.js");
+const mongoose = require( "mongoose");
+require("dotenv/config");
 
 const app = express();
 

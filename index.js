@@ -3,8 +3,9 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const productRouter = require("./src/routes/products/products.js");
 const categoriesRouter = require("./src/routes/categories/categories.js");
-const { signupRouter } = require("./src/routes/signup/signin.js");
-const { loginRouter } = require("./src/routes/login/login.js");
+const { signupRouter } = require("./src/routes/user/signin.js");
+const { loginRouter } = require("./src/routes/user/login.js");
+const {userUpdateRouter} = require('./src/routes/user/updateUser.js')
 const mongoose = require("mongoose");
 require("dotenv/config");
 const Users = require("./src/database/schemas/userSchema.js");
@@ -25,6 +26,7 @@ app.use(productRouter);
 app.use(categoriesRouter);
 app.use(signupRouter);
 app.use(loginRouter);
+app.use(userUpdateRouter);
 
 mongoose
   .connect(process.env.DB_URI)
@@ -41,7 +43,7 @@ app.post("/", (req, res) => {
       return res.json({ status: false });
     } else {
       const user = await Users.findById(data.id);
-      if (user) return res.json({ status: true, firstName: user.firstName });
+      if (user) return res.json({ status: true, userInfo: {firstName : user.firstName , lastName : user.lastName , email: user.email ,_id:user._id} });
       else return res.json({ status: false });
     }
   });

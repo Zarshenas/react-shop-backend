@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 require("dotenv/config");
 const Users = require("./src/database/schemas/userSchema.js");
 const jwt = require("jsonwebtoken");
+const { cartRouter } = require("./src/routes/cart/cart.js");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(categoriesRouter);
 app.use(signupRouter);
 app.use(loginRouter);
 app.use(userUpdateRouter);
+app.use(cartRouter);
 
 mongoose
   .connect(process.env.DB_URI)

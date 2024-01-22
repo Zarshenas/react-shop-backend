@@ -5,6 +5,7 @@ const productRouter = require("./src/routes/products/products.js");
 const categoriesRouter = require("./src/routes/categories/categories.js");
 const { signupRouter } = require("./src/routes/user/signin.js");
 const { loginRouter } = require("./src/routes/user/login.js");
+const ordersRouter = require('./src/routes/orders/orders.js')
 const {userUpdateRouter} = require('./src/routes/user/updateUser.js')
 const mongoose = require("mongoose");
 require("dotenv/config");
@@ -29,6 +30,7 @@ app.use(signupRouter);
 app.use(loginRouter);
 app.use(userUpdateRouter);
 app.use(cartRouter);
+app.use(ordersRouter);
 
 mongoose
   .connect(process.env.DB_URI)

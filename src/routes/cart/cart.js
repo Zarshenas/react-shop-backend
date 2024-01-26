@@ -1,26 +1,32 @@
 const express = require("express");
+const cors = require("cors")
 
 const cartRouter = express.Router();
 
-const User = require("../../database/schemas/userSchema");
+const Users = require("../../database/schemas/userSchema");
 const Cart = require("../../database/schemas/cartSchema");
 
-cartRouter.post("/user/cart", async (req, res) => {
-  const { _id } = req.body;
-  const usercart = await Cart.findOne({ userId: _id });
+const jwt = require("jsonwebtoken")
+
+cartRouter.get("/user/cart", async (req, res) => {
+  const {token } = req.cookies;
+  const userId = jwt.decode(token).id;
+  const usercart = await Cart.findOne({ userId: userId });
   if (!usercart) return res.status(404).send("cart is empty");
   return res.status(200).send(usercart);
 });
 
 cartRouter.post("/user/updatecart", async (req, res) => {
-  const { cartState, _id } = req.body;
-  const user = await User.findById(_id);
+  const { cartState} = req.body;
+  const {token } = req.cookies;
+  const userId = jwt.decode(token).id;
+  const user = await Users.findById(userId).exec();
   if (!user) return res.status(401).send("User does not exist");
-  const cart = await Cart.findOne({ userId: _id });
+  const cart = await Cart.findOne({ userId: userId });
   if (!cart) {
     (
       await Cart.create({
-        userId: _id,
+        userId: userId,
         checkout: cartState.checkout,
         ordersCount: cartState.ordersCount,
         totalPrice: cartState.totalPrice,
@@ -32,7 +38,7 @@ cartRouter.post("/user/updatecart", async (req, res) => {
       .catch((error) => console.log(error));
   } else {
     Cart.findOneAndUpdate({
-      userId: _id,
+      userId: userId,
       checkout: cartState.checkout,
       ordersCount: cartState.ordersCount,
       totalPrice: cartState.totalPrice,

@@ -1,11 +1,13 @@
 const express = require("express");
 const Orders = require("../../database/schemas/orderSchema.js");
+const jwt = require("jsonwebtoken")
 
 const ordersRouter = express.Router();
 
-ordersRouter.post("/user/myorders" , async (req, res) => {
-    const {_id} = req.body;
-    const userOrders = await Orders.find({"userInfo.userId":_id}).exec();
+ordersRouter.get("/user/myorders" , async (req, res) => {
+    const {token} = req.cookies;
+    const userId = jwt.decode(token).id;
+    const userOrders = await Orders.find({"userInfo.userId":userId}).exec();
     if(!userOrders.length) return res.sendStatus(204);
     return res.status(200).send(userOrders);
 })

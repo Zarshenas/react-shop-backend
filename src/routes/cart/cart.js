@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken")
 
 cartRouter.get("/user/cart", async (req, res) => {
   const {token } = req.cookies;
+  if(!token) return res.status(401).send("Not authorized");
   const userId = jwt.decode(token).id;
   const usercart = await Cart.findOne({ userId: userId });
   if (!usercart) return res.status(404).send("cart is empty");
@@ -19,6 +20,7 @@ cartRouter.get("/user/cart", async (req, res) => {
 cartRouter.post("/user/updatecart", async (req, res) => {
   const { cartState} = req.body;
   const {token } = req.cookies;
+  if(!token) return res.status(401).send("Not authorized");
   const userId = jwt.decode(token).id;
   const user = await Users.findById(userId).exec();
   if (!user) return res.status(401).send("User does not exist");

@@ -6,6 +6,7 @@ const ordersRouter = express.Router();
 
 ordersRouter.get("/user/myorders" , async (req, res) => {
     const {token} = req.cookies;
+    if(!token) return res.status(401).send("Not authorized");
     const userId = jwt.decode(token).id;
     const userOrders = await Orders.find({"userInfo.userId":userId}).exec();
     if(!userOrders.length) return res.sendStatus(204);

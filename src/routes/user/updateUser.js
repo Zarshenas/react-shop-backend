@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken")
 userUpdateRouter.post("/user/update", async (req, res) => {
   const { firstName, lastName, email} = req.body;
   const {token } = req.cookies;
+  if(!token) return res.status(401).send("Not authorized");
   const userId = jwt.decode(token).id;
   const oldUser = await Users.findById( userId );
   if(!oldUser) return res.sendStatus(404);

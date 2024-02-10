@@ -17,7 +17,11 @@ const app = express();
 
 app.use(
   cors({
+<<<<<<< Updated upstream
     origin: "https://react-shop-front-siza.netlify.app",
+=======
+    origin:"https://react-shop-front-siza.liara.run",
+>>>>>>> Stashed changes
     credentials: true,
   })
 );

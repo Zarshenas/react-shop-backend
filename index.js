@@ -5,8 +5,8 @@ const productRouter = require("./src/routes/products/products.js");
 const categoriesRouter = require("./src/routes/categories/categories.js");
 const { signupRouter } = require("./src/routes/user/signin.js");
 const { loginRouter } = require("./src/routes/user/login.js");
-const ordersRouter = require('./src/routes/orders/orders.js')
-const {userUpdateRouter} = require('./src/routes/user/updateUser.js')
+const ordersRouter = require("./src/routes/orders/orders.js");
+const { userUpdateRouter } = require("./src/routes/user/updateUser.js");
 const mongoose = require("mongoose");
 require("dotenv/config");
 const Users = require("./src/database/schemas/userSchema.js");
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://react-shop-front-siza.netlify.app",
     credentials: true,
   })
 );
@@ -47,7 +47,16 @@ app.post("/", (req, res) => {
       return res.json({ status: false });
     } else {
       const user = await Users.findById(data.id);
-      if (user) return res.json({ status: true, userInfo: {firstName : user.firstName , lastName : user.lastName , email: user.email ,_id:user._id} });
+      if (user)
+        return res.json({
+          status: true,
+          userInfo: {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            _id: user._id,
+          },
+        });
       else return res.json({ status: false });
     }
   });

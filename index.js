@@ -18,7 +18,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://react-shop-front-siza.liara.run",
+      "https://react-shop-front-siza.liara.run",
       "http://localhost:5173",
       "https://react-shop-siza.vercel.app"
     ],

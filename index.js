@@ -17,9 +17,13 @@ const app = express();
 
 app.use(
   cors({
-    origin:["https://react-shop-front-siza.liara.run","http://localhost:5173"],
-    credentials:true,
-    methods:"GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: [
+      "http://react-shop-front-siza.liara.run",
+      "http://localhost:5173",
+      "https://react-shop-siza.vercel.app"
+    ],
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 app.use(express.json());

@@ -22,8 +22,8 @@ app.use(
       "http://localhost:5173",
       "https://react-shop-siza.vercel.app"
     ],
+    methods:["GET", "POST" ,"PUT"],
     credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 app.use(express.json());

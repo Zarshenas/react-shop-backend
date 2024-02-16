@@ -12,7 +12,6 @@ loginRouter.post("/auth/login", async (req, res) => {
   if (!compareHashed(password, user.password))
     return res.status(401).send("Wrong password");
   const token = createSecretToken(user._id);
-  console.log(token)
   res.cookie("token", token, {
     withCredentials: true,
     httpOnly: false,

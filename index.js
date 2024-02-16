@@ -5,6 +5,7 @@ const productRouter = require("./src/routes/products/products.js");
 const categoriesRouter = require("./src/routes/categories/categories.js");
 const { signupRouter } = require("./src/routes/user/signin.js");
 const { loginRouter } = require("./src/routes/user/login.js");
+const { logoutRouter } = require("./src/routes/user/logout.js");
 const ordersRouter = require("./src/routes/orders/orders.js");
 const { userUpdateRouter } = require("./src/routes/user/updateUser.js");
 const mongoose = require("mongoose");
@@ -20,9 +21,9 @@ app.use(
     origin: [
       "https://react-shop-front-siza.liara.run",
       "http://localhost:5173",
-      "https://react-shop-siza.vercel.app"
+      "https://react-shop-siza.vercel.app",
     ],
-    methods:["GET", "POST" ,"PUT"],
+    methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
 );
@@ -33,6 +34,7 @@ app.use(productRouter);
 app.use(categoriesRouter);
 app.use(signupRouter);
 app.use(loginRouter);
+app.use(logoutRouter);
 app.use(userUpdateRouter);
 app.use(cartRouter);
 app.use(ordersRouter);

@@ -44,7 +44,7 @@ mongoose
   .then(() => console.log(`Connected to DB`))
   .catch((err) => console.log(err));
 
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
   const token = req.cookies.token;
   if (!token) {
     return res.json({ status: false });

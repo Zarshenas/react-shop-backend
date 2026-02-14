@@ -15,6 +15,7 @@ loginRouter.post("/auth/login", async (req, res) => {
   res.cookie("token", token, {
     withCredentials: true,
     httpOnly: false,
+    sameSite: "none",
   });
   res.sendStatus(200);
 });
